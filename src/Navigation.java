@@ -1,5 +1,6 @@
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -18,14 +19,27 @@ public class Navigation extends JPanel implements ActionListener {
 		
 		this.numPages = numPages;
 		pageNumber.setText("Page 1 of " + numPages); //Set the pageNumber label to the proper index
+		pageNumber.setFont(new Font("Helvetica", Font.BOLD, 20));
 		
-		this.setBackground(Color.white); //Set the background color of the navigation to white
+		this.setBackground(Color.lightGray); //Set the background color of the navigation to white
+		
+		CustomFont buttonFont = new CustomFont("/fonts/bneueregular.ttf", Font.PLAIN, 40);
 		
 		previous.setEnabled(false); //Disable the previous button (as the index is the first page).
 		previous.addActionListener(this); //Add this instance as the action listener
+		previous.setBackground(new Color(54, 54, 54));
+		previous.setForeground(Color.white);
+		previous.setFont(buttonFont.getFont());
 		
-		if(numPages <= 1) next.setEnabled(false); //If there is only page, disable the next button. 
 		next.addActionListener(this);
+		next.setBackground(new Color(54, 54, 54));
+		next.setFont(buttonFont.getFont());
+		
+		if(numPages <= 1) {
+			next.setEnabled(false); //If there is only page, disable the next button. 
+			next.setForeground(new Color(95, 95, 95));
+		}
+		else next.setForeground(Color.white);
 		
 		this.setLayout(new GridBagLayout()); //Add a new GridBagLayout to the panel
 		GridBagConstraints gbc = new GridBagConstraints(); //Initialize new GridBagConstraints

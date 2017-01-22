@@ -34,6 +34,10 @@ public class BoardList extends JPanel {
 		
 		JButton backToLessons = new JButton("Back to Main Menu"); //Instantiate the button which will take the user back to the list of lessons
 		backToLessons.addActionListener(new SwitchPanel(parent, mainMenu));
+		backToLessons.setFont(new CustomFont("/fonts/bneuebold.ttf", Font.PLAIN, 30).getFont());
+		backToLessons.setBackground(new Color(86, 110, 122));
+		backToLessons.setForeground(Color.white);
+		backToLessons.setBorder(new EmptyBorder(0, 0, 0, 0));
 		
 		this.add(backToLessons, gbc); //Add the backToLessons button to the panel, using the current gridbag constraints.
 		
@@ -44,7 +48,7 @@ public class BoardList extends JPanel {
 		JLabel titleLabel = new JLabel("Board List");
 		titleLabel.setFont(new CustomFont("/fonts/bneuebold.ttf", Font.PLAIN, 40).getFont());
 		titleLabel.setForeground(Color.white);
-		titleLabel.setBorder(new EmptyBorder(20, 0, 0, 0));
+		infoPanel.setBorder(new EmptyBorder(20, 0, 0, 0));
 		
 		JLabel titleInfoLabel = new JLabel("Choose a board and attempt to complete it without misplacing any components");
 		titleInfoLabel.setForeground(Color.white);
@@ -80,7 +84,7 @@ public class BoardList extends JPanel {
 		
 		Navigation navigation = new Navigation(contentPanel, contentLayout, 4); //Create a new Navigation object, passing the contentPanel and its layout (to shift through the elements), as well as the length of the content.
 		
-		gbc.weighty = 0.1;
+		gbc.weighty = 0.05;
 		gbc.gridy = 3;
 		
 		this.add(navigation, gbc); //Add the navigation to the panel, using the current gridbag constraints.
