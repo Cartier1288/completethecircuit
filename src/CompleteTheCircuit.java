@@ -15,14 +15,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class CompleteTheCircuit {
+	public static JFrame frame = new JFrame("Complete the Circuit - Main Menu");
+	public static BoardList boardList;
+	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Complete the Circuit - Main Menu");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1280, 720);
 		frame.setLocationRelativeTo(null);
 		
 		JPanel mainMenu = new JPanel();
 		mainMenu.setLayout(new GridLayout(2, 1));
+		
+		boardList = new BoardList(frame, mainMenu);
 		
 		JPanel titlePanel = new JPanel();
 		titlePanel.setLayout(new GridLayout(1, 1));
@@ -42,7 +46,7 @@ public class CompleteTheCircuit {
 		LineBorder buttonBorder = new LineBorder(new Color(32, 38, 48), 3);
 		
 		JButton boardListButton = new JButton("Board List");
-		boardListButton.addActionListener(new SwitchPanel(frame, new BoardList(frame, mainMenu), "Complete the Circuit - Board List"));
+		boardListButton.addActionListener(new SwitchPanel(frame, boardList, "Complete the Circuit - Board List"));
 		boardListButton.setFont(buttonFont.getFont());
 		boardListButton.setBackground(buttonColor);
 		boardListButton.setForeground(Color.white);

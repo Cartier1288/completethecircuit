@@ -11,8 +11,8 @@ public class Component {
 		try {
 			BufferedImage sheet = ImageIO.read(new File("res/symbolsheet.png"));
 			components = new Component[] {
-				new Component("Resistorx1", 'R', sheet, 1, 1)
-			}; //Variability can potentially be added by passing the same sheet coordinates, and a different name
+				new Component("Resistorx1", 'R', sheet, 1, 1),
+			}; //Variability can potentially be added by creating a component with the same symbol, and sheet coordinates, with a different name.
 		} catch(IOException e) {
 			System.out.println("Unable to load symbol sheet.");
 		}
@@ -30,7 +30,7 @@ public class Component {
 		
 		symbol = symbolSheet.getSubimage(x, y, ComponentSize, ComponentSize);
 	}
-	
+
 	public String getComponentName() {
 		return componentName;
 	}
@@ -42,6 +42,7 @@ public class Component {
 	public BufferedImage getSymbol() {
 		return symbol;
 	}
+	
 	
 	public final int ComponentSize = 75;
 	

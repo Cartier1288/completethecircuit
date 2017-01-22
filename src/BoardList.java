@@ -69,7 +69,7 @@ public class BoardList extends JPanel {
 		CardLayout contentLayout = new CardLayout();
 		
 		contentPanel.setLayout(contentLayout); //Set the layout of the contentPanel to contentLayout, a CardLayout which provides functionality for looping through the panels added.
-		contentPanel.add(new JPanel());
+		contentPanel.add(new BoardPage(new BoardButton(new Board(""), "res/images/bulb.png"), new BoardButton(new Board(""), "res/images/bulb.png"), new BoardButton(new Board(""), "res/images/bulb.png")));
 //		for(int i = 0; i < content.length; i++) { //Loop through the content array passed to the constructor
 //			contentPanel.add(content[i]); //Add the elements to the contentPanel
 //		}
