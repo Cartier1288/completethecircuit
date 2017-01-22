@@ -25,6 +25,12 @@ public class Component {
 		symbol = symbolSheet.getSubimage(x, y, ComponentSize, ComponentSize);
 	}
 	
+	public Component(String componentName, BufferedImage symbolSheet, int x, int y) {
+		this.componentName = componentName;
+		
+		symbol = symbolSheet.getSubimage(x, y, ComponentSize, ComponentSize);
+	}
+	
 	public String getComponentName() {
 		return componentName;
 	}
