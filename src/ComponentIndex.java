@@ -21,6 +21,6 @@ public class ComponentIndex {
 	}
 	
 	public int index = -1;
-	public int count = 0; 
-	public double value = 0;
+	public int count = -1; 
+	public double value = -1;
 }

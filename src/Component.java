@@ -10,12 +10,14 @@ public class Component {
 	public static void init() {
 		try {
 			BufferedImage sheet = ImageIO.read(new File("res/symbolsheet.png"));
-			components = new Component[] {
-				new Component("Resistorx1", 'R', sheet, 1, 1),
-			}; //Variability can potentially be added by creating a component with the same symbol, and sheet coordinates, with a different name.
+
 		} catch(IOException e) {
 			System.out.println("Unable to load symbol sheet.");
 		}
+		
+		components = new Component[] {
+			new Component("Resistor", 'R', new BufferedImage(75, 75, BufferedImage.TYPE_INT_ARGB), 0, 0),
+		}; //Variability can potentially be added by creating a component with the same symbol, and sheet coordinates, with a different name.
 	}
 	
 	public Component(String componentName, char componentCharacter, BufferedImage symbolSheet, int x, int y) {
@@ -31,11 +33,11 @@ public class Component {
 		symbol = symbolSheet.getSubimage(x, y, ComponentSize, ComponentSize);
 	}
 
-	public String getComponentName() {
+	public String getName() {
 		return componentName;
 	}
 	
-	public char getComponentCharacter() {
+	public char getCharacter() {
 		return componentCharacter;
 	}
 	

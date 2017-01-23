@@ -27,4 +27,8 @@ public class BoardPage extends JPanel {
 		gbc.gridx++;
 		this.add(board3, gbc);
 	}
+	
+	public void refresh() {
+		
+	}
 }

@@ -33,7 +33,7 @@ public class BoardList extends JPanel {
 		gbc.anchor = GridBagConstraints.FIRST_LINE_START; //Set the anchor to the top of the document
 		
 		JButton backToLessons = new JButton("Back to Main Menu"); //Instantiate the button which will take the user back to the list of lessons
-		backToLessons.addActionListener(new SwitchPanel(parent, mainMenu));
+		backToLessons.addActionListener(new SwitchPanel(parent, mainMenu, "Compete the Circuit - Main Menu"));
 		backToLessons.setFont(new CustomFont("/fonts/bneuebold.ttf", Font.PLAIN, 30).getFont());
 		backToLessons.setBackground(new Color(86, 110, 122));
 		backToLessons.setForeground(Color.white);
@@ -69,7 +69,7 @@ public class BoardList extends JPanel {
 		CardLayout contentLayout = new CardLayout();
 		
 		contentPanel.setLayout(contentLayout); //Set the layout of the contentPanel to contentLayout, a CardLayout which provides functionality for looping through the panels added.
-		contentPanel.add(new BoardPage(new BoardButton(new Board(""), "res/images/bulb.png"), new BoardButton(new Board(""), "res/images/bulb.png"), new BoardButton(new Board(""), "res/images/bulb.png")));
+		contentPanel.add(new BoardPage(new BoardButton(new Board(""), "res/images/bulb.png", this), new BoardButton(new Board(""), "res/images/bulb.png", this), new BoardButton(new Board(""), "res/images/bulb.png", this)));
 //		for(int i = 0; i < content.length; i++) { //Loop through the content array passed to the constructor
 //			contentPanel.add(content[i]); //Add the elements to the contentPanel
 //		}

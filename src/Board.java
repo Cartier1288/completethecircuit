@@ -18,11 +18,11 @@ public class Board {
 		*/
 	}
 	
-	public String getBoardName() {
+	public String getName() {
 		return boardName;
 	}
 	
-	public String getBoardDescription() {
+	public String getDescription() {
 		return boardDescription;
 	}
 	
@@ -30,17 +30,32 @@ public class Board {
 		return completion;
 	}
 	
+	public void setComplete() {
+		completion = false;
+	}
+	
 	public int getMisplaced() {
 		return misplaced;
 	}
 	
-//	public boolean match(int index ) {
-//		
-//	}
+	public void setMisplaced(int misplaced) {
+		this.misplaced = misplaced;
+	}
+	
+	public boolean match(ComponentIndex component, int x, int y) {
+		ComponentIndex correctComponent = boardChanges[x][y];
+		return (correctComponent.index == component.index 
+			 && correctComponent.count == component.count 
+			 && correctComponent.value == component.value);
+	}
+	
+	public ComponentIndex[][] getDefaultBoardComponents() {
+		return boardComponents;
+	}
 	
 	
-	private String boardName = "";
-	private String boardDescription = "";
+	private String boardName = "This is a title";
+	private String boardDescription = "This is a description";
 	
 	private boolean completion = false;
 	private int misplaced = 0;

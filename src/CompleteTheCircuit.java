@@ -16,17 +16,18 @@ import javax.swing.border.LineBorder;
 
 public class CompleteTheCircuit {
 	public static JFrame frame = new JFrame("Complete the Circuit - Main Menu");
-	public static BoardList boardList;
 	
 	public static void main(String[] args) {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1280, 720);
 		frame.setLocationRelativeTo(null);
 		
+		Component.init();
+		
 		JPanel mainMenu = new JPanel();
 		mainMenu.setLayout(new GridLayout(2, 1));
 		
-		boardList = new BoardList(frame, mainMenu);
+		BoardList boardList = new BoardList(frame, mainMenu);
 		
 		JPanel titlePanel = new JPanel();
 		titlePanel.setLayout(new GridLayout(1, 1));

@@ -1,12 +1,4 @@
-/BoardList.class
+/ComponentNavigation.class
+/BoardNavigation.class
 /CompleteTheCircuit$1.class
-/CompleteTheCircuit.class
-/CustomFont.class
-/Navigation.class
-/SwitchPanel.class
-/Board.class
-/Component.class
-/ComponentIndex.class
-/BoardButton.class
-/BoardEditor.class
-/BoardPage.class
+/ComponentButton.class
