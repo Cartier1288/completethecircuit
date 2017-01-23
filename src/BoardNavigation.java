@@ -47,7 +47,7 @@ public class BoardNavigation extends JPanel {
 		gbc.weightx = 0.9;
 		gbc.weighty = 0.8;
 		
-		this.add(new ComponentButton(0));
+		this.add(new ComponentButton(0), gbc);
 	}
 	
 	public void incrementSuccessfullyPlaced() {
