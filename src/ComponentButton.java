@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class ComponentButton extends JButton implements ActionListener {
@@ -20,10 +21,13 @@ public class ComponentButton extends JButton implements ActionListener {
 		
 		this.setBackground(Color.white);
 		this.setBorder(new LineBorder(Color.darkGray, 1));
+		
+		this.setHorizontalTextPosition(SwingConstants.CENTER);
+		this.setVerticalTextPosition(SwingConstants.TOP);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		BoardNavigation.currentlySelected = component;
+		ComponentNavigation.currentlySelected = component;
 	}
 	
 	private ComponentIndex component = null;

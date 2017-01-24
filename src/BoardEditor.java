@@ -66,21 +66,29 @@ public class BoardEditor extends JPanel {
 		this.add(infoPanel, gbc); //Add the title to the panel, using the current gridbag constraints.
 		
 		//Instantiate the panel which will hold the lesson content, as well as its layout.
-		JPanel contentPanel = new JPanel();
+		contentPanel = new BoardContent(board);
 		
-		
-		gbc.gridwidth = 2; //Set the grid width to 2, to allow the content panel to fill the entire horizontal width.
+		gbc.gridwidth = 2;
 		gbc.gridx = 0; //Set the location of the element to (0, 1).
 		gbc.gridy = 1;
-		gbc.weightx = 1; //Set the x-weight of the element to 1, so that it stretches fully across the horizontal width.
+		gbc.weightx = 0.8; //Set the x-weight of the element to 1, so that it stretches fully across the horizontal width.
 		gbc.weighty = 0.7; //Set the y-weight of the element to 0.7, to take up 70% of the vertical space of the panel.
 		
 		this.add(contentPanel, gbc); //Add contentPanel to the panel, using the current gridbag constraints.
 		
-		BoardNavigation navigation = new BoardNavigation(); //Create a new Navigation object, passing the contentPanel and its layout (to shift through the elements), as well as the length of the content.
+		gbc.gridwidth = 1;
+		gbc.gridx = 2;
+		gbc.weightx = 0.1;
 		
-		gbc.weighty = 0.15;
+		this.add(new Legend(board), gbc);
+		
+		ComponentNavigation navigation = new ComponentNavigation(); //Create a new Navigation object, passing the contentPanel and its layout (to shift through the elements), as well as the length of the content.
+		
+		gbc.gridwidth = 3;
+		gbc.gridx = 0;
 		gbc.gridy = 3;
+		gbc.weightx = 2.0;
+		gbc.weighty = 0.01;
 		
 		this.add(navigation, gbc); //Add the navigation to the panel, using the current gridbag constraints.
 	}
@@ -91,4 +99,5 @@ public class BoardEditor extends JPanel {
 	
 	Board board = null;
 	BoardButton boardButton = null;
+	BoardContent contentPanel = null;
 }

@@ -7,10 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
-public class BoardNavigation extends JPanel {
+public class ComponentNavigation extends JPanel {
 	private static final long serialVersionUID = 5066502431489298714L;
 
-	public BoardNavigation() {
+	public ComponentNavigation() {
 		this.setLayout(new GridBagLayout());
 		this.setBackground(new Color(200, 200, 200));
 		
@@ -47,7 +47,7 @@ public class BoardNavigation extends JPanel {
 		gbc.weightx = 0.9;
 		gbc.weighty = 0.8;
 		
-		this.add(new ComponentButton(0), gbc);
+		this.add(new ComponentPage(new ComponentButton[] { new ComponentButton(0) }), gbc);
 	}
 	
 	public void incrementSuccessfullyPlaced() {

@@ -16,6 +16,12 @@ public class Board {
 		 | [0, 2] (5, 0, 10) |
 		 
 		*/
+		
+		for(int i = 0; i < boardComponents.length; i++)
+			for(int j = 0; j < boardComponents[0].length; j++) {
+				boardComponents[i][j] = new ComponentIndex(-1);
+				boardChanges[i][j] = new ComponentIndex(-1);
+			}
 	}
 	
 	public String getName() {
@@ -60,6 +66,6 @@ public class Board {
 	private boolean completion = false;
 	private int misplaced = 0;
 	
-	private ComponentIndex[][] boardComponents;
-	private ComponentIndex[][] boardChanges;
+	private ComponentIndex[][] boardComponents = new ComponentIndex[5][5];
+	private ComponentIndex[][] boardChanges = new ComponentIndex[5][5];
 }
