@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Board {
 	public static Component[] components;
@@ -13,7 +18,7 @@ public class Board {
 		   (2) (-1) (-1) (-1) (2) ;
 		   (5) (1) (6, 0) (1) (6) | (End file)
 		
-		 | [0, 2] (5, 0, 10) |
+		 | [0, 2](5, 0, 10) |
 		 
 		*/
 		
@@ -25,6 +30,35 @@ public class Board {
 					boardComponents[i][j] = new ComponentIndex(8, i + (j * 5), (i * 10) + (j * 100));
 				boardChanges[i][j] = new ComponentIndex(-1);
 			}
+		
+		try {
+			Scanner boardScanner = new Scanner(new File(boardPath));
+			boardScanner.useDelimiter("-|\\+|\\/");
+			
+			String title = boardScanner.next();
+			if(title.equals("")) System.out.println("Improper formatting for board: " + boardPath);
+			this.boardName = title;
+			
+			boardScanner.next();
+			String description = boardScanner.next();
+			if(description.equals("")) System.out.println("Improper formatting for board: " + boardPath);
+			this.boardDescription = description;
+			
+			boardScanner.next();
+			String defaultBoard = boardScanner.next();
+			
+			Pattern defaultCoordinates = Pattern.compile("((.*?))");
+			Matcher defaultMatcher = defaultCoordinates.matcher(defaultBoard);
+			
+			System.out.println(defaultMatcher.group(0));
+			
+			boardScanner.next();
+			String correctBoard = boardScanner.next();
+			
+			boardScanner.close();
+		} catch (FileNotFoundException | IllegalStateException e) {
+			System.out.println("Unable to read board file: " + boardPath);
+		}
 	}
 	
 	public String getName() {
