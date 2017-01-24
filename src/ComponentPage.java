@@ -8,8 +8,10 @@ import ExternalResources.WrapLayout;
 public class ComponentPage extends JPanel {
 	private static final long serialVersionUID = 1437334919246607073L;
 
-	public ComponentPage(ComponentButton[] buttons) {
+	public ComponentPage(String name, ComponentButton[] buttons) {
 		this.setLayout(new GridLayout(1, 1));
+		
+		this.name = name;
 		
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new WrapLayout(WrapLayout.LEFT, 20, 10));
@@ -22,4 +24,10 @@ public class ComponentPage extends JPanel {
 		
 		this.add(scrollpane);
 	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	private String name = "";
 }

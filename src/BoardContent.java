@@ -15,8 +15,6 @@ public class BoardContent extends JPanel {
 		for(int i = 0; i < defaultBoard.length; i++)
 			for(int j = 0; j < defaultBoard[0].length; j++)
 				currentBoard[i][j] = defaultBoard[i][j];
-		
-		currentBoard[2][0] = new ComponentIndex(0, 1, 10);
 	}
 
 	public void paintComponent(Graphics g) {

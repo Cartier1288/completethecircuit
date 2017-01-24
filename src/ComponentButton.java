@@ -1,34 +1,52 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-public class ComponentButton extends JButton implements ActionListener {
+public class ComponentButton extends JPanel implements MouseListener {
 	private static final long serialVersionUID = -4216380991781019395L;
 
 	public ComponentButton(int componentIndex) {
 		super();
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.addMouseListener(this);
+		
 		component = new ComponentIndex(componentIndex);
 		
-		this.addActionListener(this);
-		
-		this.setText(Component.components[componentIndex].getName());
-		this.setIcon(new ImageIcon(Component.components[componentIndex].getSymbol()));
+		JLabel name = new JLabel(Component.components[componentIndex].getName(), JLabel.CENTER);
+		JLabel icon = new JLabel(new ImageIcon(Component.components[componentIndex].getSymbol()));
 		
 		this.setBackground(Color.white);
 		this.setBorder(new LineBorder(Color.darkGray, 1));
 		
-		this.setHorizontalTextPosition(SwingConstants.CENTER);
-		this.setVerticalTextPosition(SwingConstants.TOP);
+		this.add(name);
+		this.add(icon);
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		ComponentNavigation.currentlySelected = component;
+	public void mouseClicked(MouseEvent e) {}
+
+	public void mousePressed(MouseEvent e) {
+		this.setBackground(Color.lightGray);
 	}
+
+	public void mouseReleased(MouseEvent e) {
+		ComponentNavigation.currentlySelected = component;
+		this.setBackground(Color.white);
+	}
+
+	public void mouseEntered(MouseEvent e) {}
+
+	public void mouseExited(MouseEvent e) {}
 	
-	private ComponentIndex component = null;
+	
+	protected ComponentIndex component = null;
 }

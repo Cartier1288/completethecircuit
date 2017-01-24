@@ -1,13 +1,16 @@
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
-public class ComponentNavigation extends JPanel {
+public class ComponentNavigation extends JPanel implements ItemListener {
 	private static final long serialVersionUID = 5066502431489298714L;
 
 	public ComponentNavigation() {
@@ -39,7 +42,16 @@ public class ComponentNavigation extends JPanel {
 		gbc.weightx = 0.3;
 		gbc.weighty = 0.2;
 		
-		JComboBox<String> componentTypeList = new JComboBox<String>(new String[] {"Resistors"});
+		pagesPanel.setLayout(pagesLayout);
+		
+		String[] pageNames = new String[componentPages.length];
+		for(int i = 0; i < componentPages.length; i++) {
+			pageNames[i] = componentPages[i].getName();
+			pagesPanel.add(componentPages[i], pageNames[i]);
+		}
+		
+		componentTypeList = new JComboBox<String>(pageNames);
+		componentTypeList.addItemListener(this);
 		
 		this.add(componentTypeList, gbc);
 		
@@ -47,7 +59,7 @@ public class ComponentNavigation extends JPanel {
 		gbc.weightx = 0.9;
 		gbc.weighty = 0.8;
 		
-		this.add(new ComponentPage(new ComponentButton[] { new ComponentButton(0) }), gbc);
+		this.add(pagesPanel, gbc);
 	}
 	
 	public void incrementSuccessfullyPlaced() {
@@ -64,11 +76,47 @@ public class ComponentNavigation extends JPanel {
 		return misplaced;
 	}
 	
+	public void itemStateChanged(ItemEvent e) {
+		if(e.getStateChange() == ItemEvent.SELECTED) {
+			for(int i = 0; i < componentPages.length; i++)
+				if(componentPages[i].getName() == (String)componentTypeList.getSelectedItem()) {
+					pagesLayout.show(pagesPanel, (String)componentTypeList.getSelectedItem());
+				}
+		}
+	}
+	
+	
+	public static ComponentIndex currentlySelected;
+
+	private ComponentPage[] componentPages = {
+		new ComponentPage("Wires", new ComponentButton[] {
+				
+		}),
+		new ComponentPage("Light-emitters", new ComponentButton[] {
+				
+		}),
+		new ComponentPage("Resistors", new ComponentButton[] {
+				new ComponentInputButton(0)
+		}),
+		new ComponentPage("Buttons and Switches", new ComponentButton[] {
+				
+		}),
+		new ComponentPage("Batteries", new ComponentButton[] {
+				
+		}),
+		new ComponentPage("Meters", new ComponentButton[] {
+				
+		})
+	};
+	
+	private JPanel pagesPanel = new JPanel();
+	private CardLayout pagesLayout = new CardLayout();
+	
+	JComboBox<String> componentTypeList = null;
+	
 	private int successfullyPlaced = 0;
 	private int misplaced = 0;
 
 	private JLabel successfullyPlacedLabel = new JLabel("Successfully placed components: 0");
 	private JLabel misplacedLabel = new JLabel("Misplaced components: 0");
-
-	public static ComponentIndex currentlySelected;
 }

@@ -72,13 +72,13 @@ public class BoardEditor extends JPanel {
 		gbc.gridx = 0; //Set the location of the element to (0, 1).
 		gbc.gridy = 1;
 		gbc.weightx = 0.8; //Set the x-weight of the element to 1, so that it stretches fully across the horizontal width.
-		gbc.weighty = 0.7; //Set the y-weight of the element to 0.7, to take up 70% of the vertical space of the panel.
+		gbc.weighty = 0.8; //Set the y-weight of the element to 0.7, to take up 70% of the vertical space of the panel.
 		
 		this.add(contentPanel, gbc); //Add contentPanel to the panel, using the current gridbag constraints.
 		
 		gbc.gridwidth = 1;
 		gbc.gridx = 2;
-		gbc.weightx = 0.1;
+		gbc.weightx = 0.2;
 		
 		this.add(new Legend(board), gbc);
 		
@@ -88,7 +88,7 @@ public class BoardEditor extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.weightx = 2.0;
-		gbc.weighty = 0.01;
+		gbc.weighty = 0.2;
 		
 		this.add(navigation, gbc); //Add the navigation to the panel, using the current gridbag constraints.
 	}

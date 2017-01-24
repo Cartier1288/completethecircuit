@@ -19,7 +19,10 @@ public class Board {
 		
 		for(int i = 0; i < boardComponents.length; i++)
 			for(int j = 0; j < boardComponents[0].length; j++) {
-				boardComponents[i][j] = new ComponentIndex(-1);
+				if(i % 2 == 0)
+					boardComponents[i][j] = new ComponentIndex(0);
+				else
+					boardComponents[i][j] = new ComponentIndex(8, i + (j * 5), (i * 10) + (j * 100));
 				boardChanges[i][j] = new ComponentIndex(-1);
 			}
 	}
