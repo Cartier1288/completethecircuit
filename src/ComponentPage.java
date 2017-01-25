@@ -1,9 +1,8 @@
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import ExternalResources.WrapLayout;
 
 public class ComponentPage extends JPanel {
 	private static final long serialVersionUID = 1437334919246607073L;
@@ -14,13 +13,12 @@ public class ComponentPage extends JPanel {
 		this.name = name;
 		
 		JPanel buttonsPanel = new JPanel();
-		buttonsPanel.setLayout(new WrapLayout(WrapLayout.LEFT, 20, 10));
+		buttonsPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 10));
 		
 		for(int i = 0; i < buttons.length; i++)
 			buttonsPanel.add(buttons[i]);
 		
 		JScrollPane scrollpane = new JScrollPane(buttonsPanel);
-		scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		this.add(scrollpane);
 	}

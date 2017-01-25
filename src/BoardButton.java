@@ -15,6 +15,8 @@ public class BoardButton extends JPanel {
 	public BoardButton(Board board, String imagePath, BoardList boardList) {
 		this.setLayout(new GridBagLayout());
 		
+		this.board = board;
+		
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		CustomFont largeFont = new CustomFont("/fonts/bneuebold.ttf", Font.PLAIN, 32);
@@ -36,7 +38,7 @@ public class BoardButton extends JPanel {
 		}
 		completion.setFont(new CustomFont("/fonts/bneueregular.ttf", Font.PLAIN, 22).getFont());
 		
-		JLabel misplaced = new JLabel(board.getMisplaced() + " Misplaced");
+		misplaced = new JLabel(board.getMisplaced() + " Misplaced");
 		misplaced.setForeground(Color.black);
 		
 		JButton attempt = new JButton("Attempt");
@@ -72,14 +74,19 @@ public class BoardButton extends JPanel {
 		if(board.getCompletion()) {
 			completion.setText("Completed");
 			completion.setForeground(new Color(39, 230, 127));
+			
+			misplaced.setText(board.getMisplaced() + " Misplaced");
 		}
 		else {
 			completion.setText("Incomplete");
 			completion.setForeground(new Color(255, 0, 0));
+		
+			misplaced.setText(board.getMisplaced() + " Misplaced");
 		}
 		completion.setFont(new CustomFont("/fonts/bneueregular.ttf", Font.PLAIN, 22).getFont());
 	}
 	
 	Board board = null;
+	JLabel misplaced = null;
 	JLabel completion = new JLabel();
 }

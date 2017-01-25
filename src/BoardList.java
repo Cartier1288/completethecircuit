@@ -62,17 +62,15 @@ public class BoardList extends JPanel {
 		gbc.weightx = 0.95; //Set the x-weight of the element to the majority of the width
 		gbc.insets = new Insets(0, 0, 0, 0); //Remove the insets, by setting them to 0.
 		
-		this.add(infoPanel, gbc); //Add the title to the panel, using the current gridbag constraints.
+		this.add(infoPanel, gbc); //Add the title and description to the panel, using the current gridbag constraints.
 		
 		//Instantiate the panel which will hold the lesson content, as well as its layout.
 		JPanel contentPanel = new JPanel();
 		CardLayout contentLayout = new CardLayout();
 		
 		contentPanel.setLayout(contentLayout); //Set the layout of the contentPanel to contentLayout, a CardLayout which provides functionality for looping through the panels added.
-		contentPanel.add(new BoardPage(new BoardButton(new Board("res/boards/lightthebulb.brd"), "res/images/bulb.png", this), new BoardButton(new Board("res/boards/lightthebulb.brd"), "res/images/bulb.png", this), new BoardButton(new Board("res/boards/lightthebulb.brd"), "res/images/bulb.png", this)));
-//		for(int i = 0; i < content.length; i++) { //Loop through the content array passed to the constructor
-//			contentPanel.add(content[i]); //Add the elements to the contentPanel
-//		}
+		for(int i = 0; i < boardPages.length; i++)
+			contentPanel.add(boardPages[i]);
 		
 		gbc.gridwidth = 2; //Set the grid width to 2, to allow the content panel to fill the entire horizontal width.
 		gbc.gridx = 0; //Set the location of the element to (0, 1).
@@ -82,11 +80,23 @@ public class BoardList extends JPanel {
 		
 		this.add(contentPanel, gbc); //Add contentPanel to the panel, using the current gridbag constraints.
 		
-		Navigation navigation = new Navigation(contentPanel, contentLayout, 4); //Create a new Navigation object, passing the contentPanel and its layout (to shift through the elements), as well as the length of the content.
+		Navigation navigation = new Navigation(contentPanel, contentLayout, boardPages.length); //Create a new Navigation object, passing the contentPanel and its layout (to shift through the elements), as well as the length of the content.
 		
 		gbc.weighty = 0.05;
 		gbc.gridy = 3;
 		
 		this.add(navigation, gbc); //Add the navigation to the panel, using the current gridbag constraints.
 	}
+	
+	BoardPage[] boardPages = {
+		new BoardPage(new BoardButton(new Board("res/boards/lightthebulb.brd"), "res/images/bulb.png", this),
+					  new BoardButton(new Board("res/boards/leastcurrent.brd"), "res/images/bulb.png", this),
+					  new BoardButton(new Board("res/boards/maximumcurrent.brd"), "res/images/bulb.png", this)),
+		new BoardPage(new BoardButton(new Board("res/boards/switchtheled.brd"), "res/images/bulb.png", this),
+				      new BoardButton(new Board("res/boards/resistflow.brd"), "res/images/bulb.png", this),
+				      new BoardButton(new Board("res/boards/resistflowproperly.brd"), "res/images/bulb.png", this)),
+		new BoardPage(new BoardButton(new Board("res/boards/calculatevoltage.brd"), "res/images/bulb.png", this),
+			          new BoardButton(new Board("res/boards/measurecurrent.brd"), "res/images/bulb.png", this),
+			          new BoardButton(new Board("res/boards/measureresistance.brd"), "res/images/bulb.png", this))
+	};
 }

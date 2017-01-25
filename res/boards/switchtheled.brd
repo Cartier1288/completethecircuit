@@ -1,0 +1,8 @@
+title=Switch the LED;
+description=Place a component (left) so that when activated an LED (right) will receive power and remain on;
+
+/ (2) (0) (-1) (0) (-1) (0) (3) 
+  (1) (-1) (-1) (-1) (-1) (-1) (1) 
+  (4) (0) (0) (11, 1, 3) (0) (0) (5) /
+
+/ {[2, 0](10)} {[4, 0](7)} /

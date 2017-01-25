@@ -1,15 +1,11 @@
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class ComponentButton extends JPanel implements MouseListener {
@@ -23,7 +19,10 @@ public class ComponentButton extends JPanel implements MouseListener {
 		component = new ComponentIndex(componentIndex);
 		
 		JLabel name = new JLabel(Component.components[componentIndex].getName(), JLabel.CENTER);
-		JLabel icon = new JLabel(new ImageIcon(Component.components[componentIndex].getSymbol()));
+		name.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+		
+		JLabel icon = new JLabel(new ImageIcon(Component.components[componentIndex].getSymbol()), JLabel.CENTER);
+		icon.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
 		
 		this.setBackground(Color.white);
 		this.setBorder(new LineBorder(Color.darkGray, 1));

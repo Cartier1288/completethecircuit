@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -18,34 +19,70 @@ public class ComponentInputButton extends ComponentButton {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		String value = this.field.getText();
-		if(isInteger(value)) {
-			this.component.value = Integer.parseInt(value);
+		if(isDouble(value)) {
+			this.component.value = Double.parseDouble(value);
 			super.mouseReleased(e);
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "Unable to process component value. Make sure the value you entered into the component button is a valid integer (no decimals).");
+			JOptionPane.showMessageDialog(null, "Unable to process component value. Make sure the value you entered into the component button is a valid number (decimals are allowed).");
 			this.setBackground(Color.white);
 		}
 	}
 	
-	private boolean isInteger(String str) {
-		return isInteger(str, 10);
-	}
-	
-	private boolean isInteger(String str, int radix) {
-		if(str.isEmpty()) return false;
+	//Retrieved from http://hg.openjdk.java.net/jdk9/jdk9/jdk/file/4a00f31b3995/src/java.base/share/classes/java/lang/Double.java#l444
+	private boolean isDouble(String str) {
+		final String Digits     = "(\\p{Digit}+)";
+		final String HexDigits  = "(\\p{XDigit}+)";
 		
-		if(str.charAt(0) == '-') {
-			if(str.length() == 1) return false;
-		}
-		else {
-			if(Character.digit(str.charAt(0), radix) < 0) return false;
-		}
-		for(int i = 1; i < str.length(); i++)
-			if(Character.digit(str.charAt(i), radix) < 0) return false;
+		// an exponent is 'e' or 'E' followed by an optionally
+		// signed decimal integer.
 		
-		return true;
+		final String Exp        = "[eE][+-]?"+Digits;
+		final String fpRegex    =
+		("[\\x00-\\x20]*"+  // Optional leading "whitespace"
+		 "[+-]?(" + // Optional sign character
+		 "NaN|" +           // "NaN" string
+		 "Infinity|" +      // "Infinity" string
+		
+		 // A decimal floating-point string representing a finite positive
+		 // number without a leading sign has at most five basic pieces:
+		 // Digits . Digits ExponentPart FloatTypeSuffix
+		
+		 // Since this method allows integer-only strings as input
+		 // in addition to strings of floating-point literals, the
+		 // two sub-patterns below are simplifications of the grammar
+		 // productions from section 3.10.2 of
+		 // The Java Language Specification.
+		 
+		 // Digits ._opt Digits_opt ExponentPart_opt FloatTypeSuffix_opt
+		
+		 "((("+Digits+"(\\.)?("+Digits+"?)("+Exp+")?)|"+
+		
+		 // . Digits ExponentPart_opt FloatTypeSuffix_opt
+		
+		 "(\\.("+Digits+")("+Exp+")?)|"+
+		
+		 // Hexadecimal strings
+		
+		 "((" +
+		
+		 // 0[xX] HexDigits ._opt BinaryExponent FloatTypeSuffix_opt
+		
+		 "(0[xX]" + HexDigits + "(\\.)?)|" +
+		
+		 // 0[xX] HexDigits_opt . HexDigits BinaryExponent FloatTypeSuffix_opt
+		
+		 "(0[xX]" + HexDigits + "?(\\.)" + HexDigits + ")" +
+		
+		 ")[pP][+-]?" + Digits + "))" +
+		 "[fFdD]?))" +
+		 "[\\x00-\\x20]*");// Optional trailing "whitespace"
+		
+		 
+		if (Pattern.matches(fpRegex, str))
+			return true;
+		return false;
 	}
-	
+
 	private JTextField field = new JTextField();
 }

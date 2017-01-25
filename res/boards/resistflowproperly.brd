@@ -1,0 +1,10 @@
+title=Resist Flow (Properly);
+description=Place a resistor on the circuit in order to reduce the current the LED is receiving, to the value given by the ammeter;
+
+/ (2) (0) (0) (11, 1, 6) (0) (0) (3) 
+  (1) (-1) (-1) (-1) (-1) (-1) (1) 
+  (15) (0) (0) (-1) (0) (0) (16) 
+  (1) (-1) (-1) (-1) (-1) (-1) (1) 
+  (4) (0) (0) (13, 1, 0.5) (0) (0) (5) /
+
+/ {[3, 2](8, -1, 12)} /

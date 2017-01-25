@@ -17,14 +17,18 @@ public class SwitchPanel implements ActionListener {
 		this.frame = frame;
 		this.panel = panel;
 		
-		this.frame.setTitle(title);
+		this.title = title;
 	}
 	
 	public void actionPerformed(ActionEvent e) { //In the case of the element which the class has been passed to as an ActionListener performing an action, switch to the desired panel.
 		this.frame.setContentPane(panel); //In the case of the element which the class has been passed to as an ActionListener performing an action, switch to the desired panel.
 		this.frame.revalidate(); //Re-validate the frame; repaints and updates the content.
+	
+		if(title != "") this.frame.setTitle(title);
 	}
 	
 	private JFrame frame; //JFrame which will have its content pane changed
 	private JPanel panel; //Panel to change to
+
+	private String title = "";
 }

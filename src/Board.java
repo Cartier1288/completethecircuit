@@ -33,7 +33,7 @@ public class Board {
 		
 		try {
 			Scanner boardScanner = new Scanner(new File(boardPath));
-			boardScanner.useDelimiter("-|\\+|\\/");
+			boardScanner.useDelimiter("title=|description=|;|\\/");
 			
 			String title = boardScanner.next();
 			if(title.equals("")) System.out.println("Improper formatting for board: " + boardPath);
@@ -44,18 +44,90 @@ public class Board {
 			if(description.equals("")) System.out.println("Improper formatting for board: " + boardPath);
 			this.boardDescription = description;
 			
+			
 			boardScanner.next();
 			String defaultBoard = boardScanner.next();
 			
-			Pattern defaultCoordinates = Pattern.compile("((.*?))");
-			Matcher defaultMatcher = defaultCoordinates.matcher(defaultBoard);
+			Matcher widthMatcher = Pattern.compile("\\((.*?)\\)").matcher(defaultBoard.substring(0, defaultBoard.indexOf('\n')));
+			int columns = 0;
 			
-			System.out.println(defaultMatcher.group(0));
+			while(widthMatcher.find()) columns++; 
+			
+			Matcher defaultMatcher = Pattern.compile("\\((.*?)\\)").matcher(defaultBoard);
+			
+			int totalLength = 0;
+			while(defaultMatcher.find()) totalLength++;
+			
+			int rows = totalLength / columns;
+			
+			boardComponents = new ComponentIndex[rows][columns];
+			
+			defaultMatcher.reset();
+			int inc = 0;
+			while(defaultMatcher.find()) {
+				String[] component = defaultMatcher.group(1).replaceAll(" ", "").split(",");
+				int index = Integer.parseInt(component[0]);
+				int count = -1;
+				double value = -1;
+				
+				if(component.length > 1)
+					count = Integer.parseInt(component[1]);
+				if(component.length > 2)
+					value = Double.parseDouble(component[2]);
+				
+				boardComponents[inc / columns][inc % columns] = new ComponentIndex(index, count, value);
+				
+				inc++;
+			}
+			
 			
 			boardScanner.next();
 			String correctBoard = boardScanner.next();
 			
+			boardChanges = new ComponentIndex[rows][columns];
+			for(int i = 0; i < rows; i++)
+				for(int j = 0; j < columns; j++)
+					boardChanges[i][j] = new ComponentIndex(-1);
+			
+			Matcher changeMatcher = Pattern.compile("\\{(.*?)\\}").matcher(correctBoard);
+			
+			while(changeMatcher.find()) {
+				String match = changeMatcher.group(1).replaceAll(" ", "");
+				int middle = match.indexOf(']');
+				String componentCoordinates = match.substring(1, middle);
+				String componentInfo = match.substring(middle + 2, match.length() - 1);
+				
+				String[] coordinates = componentCoordinates.split(",");
+				int x = Integer.parseInt(coordinates[0]),
+					y = Integer.parseInt(coordinates[1]);
+				
+				String[] component = componentInfo.split(",");
+				int index = Integer.parseInt(component[0]);
+				int count = -1;
+				double value = -1.0;
+				
+				if(component.length > 1)
+					count = Integer.parseInt(component[1]);
+				if(component.length > 2)
+					value = Double.parseDouble(component[2]);
+				
+				boardChanges[y][x] = new ComponentIndex(index, count, value);
+				
+				numberOfChanges++;
+			}
+			
 			boardScanner.close();
+			
+			
+			File progressFile = new File("res/progress/" + boardName.replaceAll(" ", "").toLowerCase() + "-progress.pgs");
+			if(progressFile.exists()) {
+				Scanner progressScanner = new Scanner(progressFile);
+				
+				completion = true;
+				misplaced = Integer.parseInt(progressScanner.nextLine());
+				
+				progressScanner.close();
+			}
 		} catch (FileNotFoundException | IllegalStateException e) {
 			System.out.println("Unable to read board file: " + boardPath);
 		}
@@ -74,7 +146,7 @@ public class Board {
 	}
 	
 	public void setComplete() {
-		completion = false;
+		completion = true;
 	}
 	
 	public int getMisplaced() {
@@ -85,8 +157,13 @@ public class Board {
 		this.misplaced = misplaced;
 	}
 	
+	public int getNumberOfChanges() {
+		return numberOfChanges;
+	}
+	
 	public boolean match(ComponentIndex component, int x, int y) {
-		ComponentIndex correctComponent = boardChanges[x][y];
+		ComponentIndex correctComponent = boardChanges[y][x];
+		System.out.println("Index: " + correctComponent.index + " to " + component.index + ", " + correctComponent.count + " to " + component.count + ", " + correctComponent.value + " to " + component.value);
 		return (correctComponent.index == component.index 
 			 && correctComponent.count == component.count 
 			 && correctComponent.value == component.value);
@@ -105,4 +182,6 @@ public class Board {
 	
 	private ComponentIndex[][] boardComponents = new ComponentIndex[5][5];
 	private ComponentIndex[][] boardChanges = new ComponentIndex[5][5];
+	
+	private int numberOfChanges = 0;
 }

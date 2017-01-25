@@ -1,0 +1,12 @@
+title=Measure Resistance;
+description=Place an ohmmeter in the empty location, with a value based off of the voltage and current;
+
+/ (2) (0) (0) (11, 1, 60) (0) (0) (3) 
+  (1) (-1) (-1) (-1) (-1) (-1) (1) 
+  (15) (0) (0) (7) (0) (0) (16) 
+  (1) (-1) (-1) (-1) (-1) (-1) (1) 
+  (15) (0) (0) (13, 1, 2) (0) (0) (16) 
+  (1) (-1) (-1) (-1) (-1) (-1) (1)
+  (4) (0) (0) (-1) (0) (0) (5) /
+
+/ {[3, 6](14, -1, 30)} /

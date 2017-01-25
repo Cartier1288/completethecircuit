@@ -1,8 +1,8 @@
--Light the Bulb-
-+Place a bulb in the correct location to light it up.+
+title=Light the Bulb;
+description=Place a bulb in the correct location to light it up;
 
 / (2) (0) (0) (-1) (0) (0) (3) 
   (1) (-1) (-1) (-1) (-1) (-1) (1) 
-  (4) (0) (0) (B, 1, 3) (0) (0) (5) /
+  (4) (0) (0) (11, 1, 3) (0) (0) (5) /
 
-/ [3, 0](6) /
+/ {[3, 0](6)} /

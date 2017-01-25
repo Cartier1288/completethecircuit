@@ -62,9 +62,17 @@ public class ComponentNavigation extends JPanel implements ItemListener {
 		this.add(pagesPanel, gbc);
 	}
 	
+	public int getSuccessfullyPlaced() {
+		return successfullyPlaced;
+	}
+	
 	public void incrementSuccessfullyPlaced() {
 		successfullyPlaced++;
 		successfullyPlacedLabel.setText("Successfully placed components: " + successfullyPlaced);
+	}
+	
+	public int getMisplaced() {
+		return misplaced;
 	}
 	
 	public void incrementMisplaced() {
@@ -72,8 +80,15 @@ public class ComponentNavigation extends JPanel implements ItemListener {
 		misplacedLabel.setText("Misplaced components: " + misplaced);
 	}
 	
-	public int getMisplaced() {
-		return misplaced;
+	public void reset() {
+		misplaced = 0;
+		successfullyPlaced = 0;
+
+		successfullyPlacedLabel.setText("Successfully placed components: 0");
+		misplacedLabel.setText("Misplaced components: 0");
+		
+		componentTypeList.setSelectedIndex(0);
+		pagesLayout.first(pagesPanel);
 	}
 	
 	public void itemStateChanged(ItemEvent e) {
@@ -90,22 +105,24 @@ public class ComponentNavigation extends JPanel implements ItemListener {
 
 	private ComponentPage[] componentPages = {
 		new ComponentPage("Wires", new ComponentButton[] {
-				
+			new ComponentButton(0), new ComponentButton(1), new ComponentButton(2),
+			new ComponentButton(3), new ComponentButton(4), new ComponentButton(5),
+			new ComponentButton(15)//, new ComponentButton(16)
 		}),
 		new ComponentPage("Light-emitters", new ComponentButton[] {
-				
+			new ComponentButton(6), new ComponentButton(7)
 		}),
 		new ComponentPage("Resistors", new ComponentButton[] {
-				new ComponentInputButton(0)
+			new ComponentButton(8), new ComponentInputButton(8)
 		}),
 		new ComponentPage("Buttons and Switches", new ComponentButton[] {
-				
+			new ComponentButton(9), new ComponentButton(10)
 		}),
 		new ComponentPage("Batteries", new ComponentButton[] {
-				
+			new ComponentInputButton(11)
 		}),
 		new ComponentPage("Meters", new ComponentButton[] {
-				
+			new ComponentInputButton(12), new ComponentInputButton(13), new ComponentInputButton(14)
 		})
 	};
 	

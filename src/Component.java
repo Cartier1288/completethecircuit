@@ -26,7 +26,9 @@ public class Component {
 				new Component("Battery", 'B', sheet, 150, 100),
 				new Component("Voltmeter", 'V', sheet, 0, 150),
 				new Component("Ammeter", 'A', sheet, 50, 150),
-				new Component("Ohmeter", 'O', sheet, 100, 150)
+				new Component("Ohmmeter", 'O', sheet, 100, 150),
+				new Component("Wire UDR", sheet, 150, 150),
+				new Component("Wire UDL", sheet, 0, 200)
 			}; //Variability can potentially be added by creating a component with the same symbol, and sheet coordinates, with a different name.
 		} catch(IOException e) {
 			System.out.println("Unable to load symbol sheet.");
@@ -37,13 +39,13 @@ public class Component {
 		this.componentName = componentName;
 		this.componentCharacter = componentCharacter;
 		
-		symbol = symbolSheet.getSubimage(x, y, ComponentSize, ComponentSize);
+		symbol = symbolSheet.getSubimage(x, y, COMPONENT_SIZE, COMPONENT_SIZE);
 	}
 	
 	public Component(String componentName, BufferedImage symbolSheet, int x, int y) {
 		this.componentName = componentName;
 		
-		symbol = symbolSheet.getSubimage(x, y, ComponentSize, ComponentSize);
+		symbol = symbolSheet.getSubimage(x, y, COMPONENT_SIZE, COMPONENT_SIZE);
 	}
 
 	public String getName() {
@@ -59,7 +61,7 @@ public class Component {
 	}
 	
 	
-	public static final int ComponentSize = 50;
+	public static final int COMPONENT_SIZE = 50;
 	
 	private String componentName = "";
 	private char componentCharacter = ' ';

@@ -1,0 +1,8 @@
+title=Least Current;
+description=Place x number of bulbs in the correct location(s) to pull the least amount of current;
+
+/ (2) (0) (0) (11, 1, 3) (0) (0) (3) 
+  (1) (-1) (-1) (-1) (-1) (-1) (1) 
+  (4) (0) (-1) (0) (-1) (0) (5) /
+
+/ {[2, 2](6)} {[4, 2](6)} /
