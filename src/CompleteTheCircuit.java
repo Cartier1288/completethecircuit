@@ -1,3 +1,7 @@
+/*
+ * Isaac McQuaide, ICS 3U, Culminating Task - Complete the Circuit, Educational game designed to provide practice for circuit-building and electricity.
+ */
+
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;

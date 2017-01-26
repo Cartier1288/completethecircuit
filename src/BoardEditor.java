@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+//Class which visually displays a board, its information, including title, description, and legend of components, and a navigation of components.
 public class BoardEditor extends JPanel {
 	private static final long serialVersionUID = -5143421163617225333L;
 
@@ -36,19 +37,20 @@ public class BoardEditor extends JPanel {
 		gbc.insets = new Insets(30, 30, 30, 30); //Set the insets to 30px
 		gbc.anchor = GridBagConstraints.FIRST_LINE_START; //Set the anchor to the top of the document
 		
-		JButton backToLessons = new JButton("Back to Board List"); //Instantiate the button which will take the user back to the list of lessons
-		backToLessons.addActionListener(new ActionListener() {
+		JButton backToBoards = new JButton("Back to Board List"); //Instantiate the button which will take the user back to the list of boards
+		backToBoards.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				refresh();
 			}
 		});
-		backToLessons.setFont(new CustomFont("/fonts/bneuebold.ttf", Font.PLAIN, 30).getFont());
-		backToLessons.setBackground(new Color(86, 110, 122));
-		backToLessons.setForeground(Color.white);
-		backToLessons.setBorder(new EmptyBorder(0, 0, 0, 0));
+		backToBoards.setFont(new CustomFont("/fonts/bneuebold.ttf", Font.PLAIN, 30).getFont());
+		backToBoards.setBackground(new Color(86, 110, 122));
+		backToBoards.setForeground(Color.white);
+		backToBoards.setBorder(new EmptyBorder(0, 0, 0, 0));
 		
-		this.add(backToLessons, gbc); //Add the backToLessons button to the panel, using the current gridbag constraints.
+		this.add(backToBoards, gbc); //Add the backToLessons button to the panel, using the current gridbag constraints.
 		
+		//Create a panel to hold the information for the board
 		JPanel infoPanel = new JPanel();
 		infoPanel.setLayout(new GridLayout(2, 1));
 		infoPanel.setOpaque(false);
@@ -79,7 +81,7 @@ public class BoardEditor extends JPanel {
 		
 		this.add(new Legend(board), gbc);
 		
-		navigation = new ComponentNavigation(); //Create a new Navigation object, passing the contentPanel and its layout (to shift through the elements), as well as the length of the content.
+		navigation = new ComponentNavigation(); //Create a new ComponentNavigation object.
 		
 		gbc.gridwidth = 3;
 		gbc.gridx = 0;
@@ -101,6 +103,7 @@ public class BoardEditor extends JPanel {
 		
 	}
 	
+	//Method to refresh the editor and its contents, as well as return to the board list.
 	public void refresh() {
 		boardButton.refreshCompletion();
 		contentPanel.reset();
@@ -111,7 +114,7 @@ public class BoardEditor extends JPanel {
 		CompleteTheCircuit.frame.setTitle("Complete the Circuit - Board List");
 		
 		navigation.reset();
-		ComponentNavigation.currentlySelected = null;
+		ComponentNavigation.currentlySelected = null; //Reset the currently selected component
 	}
 	
 	Board board = null;

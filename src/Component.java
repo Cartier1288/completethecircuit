@@ -4,12 +4,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+//Class which defines the characteristics of a component, and carries a static array of predefined components.
 public class Component {
+	//Static array of type Component
 	public static Component[] components = null;
 	
+	//Static method to initialize the predefined components
 	public static void init() {
 		try {
-			BufferedImage sheet = ImageIO.read(new File("res/symbolsheet.png"));
+			BufferedImage sheet = ImageIO.read(new File("res/symbolsheet.png")); //Load a sheet containing the symbols' images into a BufferedImage
 
 			components = new Component[] {
 				new Component("Wire LR", sheet, 0, 0),
@@ -29,38 +32,42 @@ public class Component {
 				new Component("Ohmmeter", 'O', sheet, 100, 150),
 				new Component("Wire UDR", sheet, 150, 150),
 				new Component("Wire UDL", sheet, 0, 200)
-			}; //Variability can potentially be added by creating a component with the same symbol, and sheet coordinates, with a different name.
+			};
 		} catch(IOException e) {
 			System.out.println("Unable to load symbol sheet.");
 		}
 	}
 	
-	public Component(String componentName, char componentCharacter, BufferedImage symbolSheet, int x, int y) {
+	public Component(String componentName, char componentCharacter, BufferedImage symbolSheet, int x, int y) { //Constructor taking the component's name, character, symbol-sheet, and sheet coordinates.
 		this.componentName = componentName;
 		this.componentCharacter = componentCharacter;
 		
-		symbol = symbolSheet.getSubimage(x, y, COMPONENT_SIZE, COMPONENT_SIZE);
+		symbol = symbolSheet.getSubimage(x, y, COMPONENT_SIZE, COMPONENT_SIZE); //Extract the component's symbol from the provided symbol-sheet
 	}
 	
-	public Component(String componentName, BufferedImage symbolSheet, int x, int y) {
+	public Component(String componentName, BufferedImage symbolSheet, int x, int y) { //Constructor which takes the component's name, symbol-sheet, and sheet coordinates.
 		this.componentName = componentName;
 		
-		symbol = symbolSheet.getSubimage(x, y, COMPONENT_SIZE, COMPONENT_SIZE);
+		symbol = symbolSheet.getSubimage(x, y, COMPONENT_SIZE, COMPONENT_SIZE); //Extract the component's symbol from the provided symbol-sheet
 	}
 
+	//Function to get the component's name
 	public String getName() {
 		return componentName;
 	}
 	
+	//Function to get the component's character
 	public char getCharacter() {
 		return componentCharacter;
 	}
 	
+	//Function to get the component's symbol
 	public BufferedImage getSymbol() {
 		return symbol;
 	}
 	
 	
+	//Constant containing the size of the components
 	public static final int COMPONENT_SIZE = 50;
 	
 	private String componentName = "";

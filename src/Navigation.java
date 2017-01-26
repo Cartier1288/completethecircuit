@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+//Class which allows the user to navigate between BoardPages
 public class Navigation extends JPanel implements ActionListener {
 	private static final long serialVersionUID = -5772970337227689429L;
 

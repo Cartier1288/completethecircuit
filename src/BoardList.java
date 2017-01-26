@@ -32,15 +32,16 @@ public class BoardList extends JPanel {
 		gbc.insets = new Insets(30, 30, 30, 30); //Set the insets to 30px
 		gbc.anchor = GridBagConstraints.FIRST_LINE_START; //Set the anchor to the top of the document
 		
-		JButton backToLessons = new JButton("Back to Main Menu"); //Instantiate the button which will take the user back to the list of lessons
-		backToLessons.addActionListener(new SwitchPanel(parent, mainMenu, "Compete the Circuit - Main Menu"));
-		backToLessons.setFont(new CustomFont("/fonts/bneuebold.ttf", Font.PLAIN, 30).getFont());
-		backToLessons.setBackground(new Color(86, 110, 122));
-		backToLessons.setForeground(Color.white);
-		backToLessons.setBorder(new EmptyBorder(0, 0, 0, 0));
+		JButton backToMenu = new JButton("Back to Main Menu"); //Instantiate the button which will take the user back to the list of lessons
+		backToMenu.addActionListener(new SwitchPanel(parent, mainMenu, "Compete the Circuit - Main Menu"));
+		backToMenu.setFont(new CustomFont("/fonts/bneuebold.ttf", Font.PLAIN, 30).getFont());
+		backToMenu.setBackground(new Color(86, 110, 122));
+		backToMenu.setForeground(Color.white);
+		backToMenu.setBorder(new EmptyBorder(0, 0, 0, 0));
 		
-		this.add(backToLessons, gbc); //Add the backToLessons button to the panel, using the current gridbag constraints.
+		this.add(backToMenu, gbc); //Add the backToLessons button to the panel, using the current gridbag constraints.
 		
+		//Create a panel to display the information regarding the board list
 		JPanel infoPanel = new JPanel();
 		infoPanel.setLayout(new GridLayout(2, 1));
 		infoPanel.setOpaque(false);
@@ -68,7 +69,7 @@ public class BoardList extends JPanel {
 		JPanel contentPanel = new JPanel();
 		CardLayout contentLayout = new CardLayout();
 		
-		contentPanel.setLayout(contentLayout); //Set the layout of the contentPanel to contentLayout, a CardLayout which provides functionality for looping through the panels added.
+		contentPanel.setLayout(contentLayout); //Set the layout of the contentPanel to contentLayout, a CardLayout which provides functionality for looping through the board pages added.
 		for(int i = 0; i < boardPages.length; i++)
 			contentPanel.add(boardPages[i]);
 		
@@ -88,6 +89,7 @@ public class BoardList extends JPanel {
 		this.add(navigation, gbc); //Add the navigation to the panel, using the current gridbag constraints.
 	}
 	
+	//Array holding the board pages
 	BoardPage[] boardPages = {
 		new BoardPage(new BoardButton(new Board("res/boards/lightthebulb.brd"), "res/images/bulb.png", this),
 					  new BoardButton(new Board("res/boards/leastcurrent.brd"), "res/images/bulb.png", this),

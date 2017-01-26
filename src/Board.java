@@ -4,10 +4,11 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//Class which holds all of the information regarding a board and its components.
 public class Board {
 	public static Component[] components;
 	
-	public Board(String boardPath) {
+	public Board(String boardPath) { //Constructor takes the path, as a String, to the file containing the board information.
 		/* 
 		Layout of board format:
 		
@@ -172,7 +173,6 @@ public class Board {
 	//Function to test whether a ComponentIndex, at x by y, outlines the correct component.
 	public boolean match(ComponentIndex component, int x, int y) {
 		ComponentIndex correctComponent = boardChanges[y][x];
-		System.out.println("Index: " + correctComponent.index + " to " + component.index + ", " + correctComponent.count + " to " + component.count + ", " + correctComponent.value + " to " + component.value);
 		return (correctComponent.index == component.index 
 			 && correctComponent.count == component.count 
 			 && correctComponent.value == component.value);
@@ -184,15 +184,14 @@ public class Board {
 	}
 	
 	
-	//
 	private String boardName = "This is a title";
 	private String boardDescription = "This is a description";
 	
 	private boolean completion = false;
 	private int misplaced = 0;
 	
-	private ComponentIndex[][] boardComponents = new ComponentIndex[5][5];
-	private ComponentIndex[][] boardChanges = new ComponentIndex[5][5];
+	private ComponentIndex[][] boardComponents = new ComponentIndex[5][5]; //Two-dimensional ComponentIndex array holding the default board components
+	private ComponentIndex[][] boardChanges = new ComponentIndex[5][5]; //Two-dimensional ComponentIndex array holding the changes to the board components (the components needing to be placed by the user)
 	
-	private int numberOfChanges = 0;
+	private int numberOfChanges = 0; //Integer holding the number of correct changes which must be made to the default board, to complete the board.
 }

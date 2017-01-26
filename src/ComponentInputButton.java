@@ -5,25 +5,26 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+//Class which is an extension of the ComponentButton class, allowing the user to enter a value for the component.
 public class ComponentInputButton extends ComponentButton {
 	private static final long serialVersionUID = 7150847273213932542L;
 
-	public ComponentInputButton(int componentIndex) {
-			super(componentIndex);
+	public ComponentInputButton(int componentIndex) { //Constructor taking the desired component's index
+			super(componentIndex); //Call the superclass' constructor
 			
-			field.setText("-1");
+			field.setText("-1"); //Set the current text of the text-field to a default value of -1
 			
-			this.add(field);
+			this.add(field); //Add the field to the panel
 	}
 	
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		String value = this.field.getText();
-		if(isDouble(value)) {
-			this.component.value = Double.parseDouble(value);
-			super.mouseReleased(e);
+	public void mouseReleased(MouseEvent e) { //Override the previous mouseReleased method, retrieving the field's value as well.
+		String value = this.field.getText(); //Get the value entered into the field
+		if(isDouble(value)) { //Check if the entered value is a double
+			this.component.value = Double.parseDouble(value); //Parse the value entered, and assign it to the component's value.
+			super.mouseReleased(e); //Call the method defined by the superclass
 		}
-		else {
+		else { //Warn the user, otherwise.
 			JOptionPane.showMessageDialog(null, "Unable to process component value. Make sure the value you entered into the component button is a valid number (decimals are allowed).");
 			this.setBackground(Color.white);
 		}
