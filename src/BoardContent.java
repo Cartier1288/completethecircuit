@@ -149,6 +149,7 @@ public class BoardContent extends JPanel implements MouseListener {
 				navigation.incrementMisplaced();
 				if((navigation.getMisplaced() % 3) == 0) { //Check if the number of misplaced components is a multiple of three; if so, reset the current board and repaint the panel.
 					reset();
+					navigation.resetSuccessfullyPlaced();
 					this.repaint();
 				}
 			}

@@ -17,7 +17,7 @@
 		<p>To begin completing boards, click on the <strong>Board List</strong> button from the Main Menu.</p>
 		<img src="img/mainMenu.jpg" />
 
-		<p>Select a board you would like to attempt; the first board shown "Light the Bulb" is recommended to learn the user-interface. You can navigate through 
+		<p>Select a board you would like to attempt; the first board shown, "Light the Bulb," is recommended to learn the user-interface. You can navigate through 
 		the boards by pressing <strong>Next</strong> to proceed to the next page, and <strong>Previous</strong> to return to the previous page.</p>
 		<img src="img/boardNav.jpg" />
 
@@ -26,7 +26,7 @@
 
 		<p>Once in the board editor (the interface shown after clicking the <strong>Attempt</strong> button), there are numerous sections to be mindful of:</p> 
 		<ul>
-			<li><p><strong>BACK TO BOARD LIST button:</strong></p> this button can be used to return to the list of available boards.</li>			
+			<li><p><strong>BACK TO BOARD LIST button:</strong> Located in the top left of the window. This button can be used to return to the list of available boards.</p></li>			
 			<li><p><strong>Information section:</strong> located in the top right of the window. This section provides the title of the board, as well as a description, describing the 
 			actions needed to complete the board.</p></li>
 			<li><p><strong>Board:</strong> this panel is in the center of the window, occupying slightly more space on the left side. It contains the graphical representation of the board, 
@@ -42,7 +42,7 @@
 			<li><p><strong>Input component buttons:</strong> certain component buttons contain an input-field to provide a value for the component being placed. Enter a value into the field, 
 			and click the button to use the entered value. These need only be used when the component needs a particular value.</p></li>
 		</ul>
-		<img src="boardEditor.jpg" />
+		<img src="img/boardEditor.jpg" />
 		
 		<h2>How to complete a board:</h2>
 		<p>To successfully complete a board you must correctly place all of the missing components in the right locations. To do this, you must click a board's <strong>Attempt</strong> 

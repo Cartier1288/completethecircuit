@@ -10,11 +10,13 @@
 	<body>
 		<h1>Installation Guide</h1>
 		
+		<a href="index.html"><h3>Return to index</h3></a>		
+		
 		<h2>Requirements:</h2>
 		<ul class="large-list">		
-			<li><h3>JDK and JRE</h3></li>
-			<li><h3>(Optional) IDE--example uses Eclipse</h3></li>
-			<li><h3>Archiving program, able to extract the archived files (in RAR format).</h3></li>
+			<li><h3>Java Develoment Kit and Java Runtime Environment</h3></li>
+			<li><h3>(Optional) IDE. The provided examples use Eclipse</h3></li>
+			<li><h3>Archiving program, able to extract the archived files (in RAR format)</h3></li>
 			<li><h3>Computer specifications capable of handling minimal graphics and file processing</h3></li>
 		</ul>
 		

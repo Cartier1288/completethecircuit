@@ -77,6 +77,12 @@ public class ComponentNavigation extends JPanel implements ItemListener {
 		successfullyPlacedLabel.setText("Successfully placed components: " + successfullyPlaced);
 	}
 	
+	//Method to reset the number of successfully placed components
+	public void resetSuccessfullyPlaced() {
+		successfullyPlaced = 0;
+		successfullyPlacedLabel.setText("Successfully placed components: 0");
+	}
+	
 	//Function to get the number of misplaced components
 	public int getMisplaced() {
 		return misplaced;
